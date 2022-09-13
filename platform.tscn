@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://platform.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/objects/platform.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 133.5, 28.5 )
@@ -15,7 +15,7 @@ script = ExtResource( 1 )
 position = Vector2( -0.5, 1.5 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0.5, 0 )
-scale = Vector2( 4.32813, 1 )
+[node name="Sprite" type="Sprite" parent="CollisionShape2D"]
+position = Vector2( -0.266504, 0.289189 )
+scale = Vector2( 0.668832, 0.316975 )
 texture = ExtResource( 2 )

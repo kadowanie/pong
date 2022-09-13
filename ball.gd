@@ -1,13 +1,17 @@
 extends KinematicBody2D
 
+
 var speed = 300
 var velocity = Vector2()
 
+
 func _ready():
 	start()
-	
+
+
 func start():
 	velocity = Vector2(speed, 0).rotated(rand_range(-360,360))
+
 
 func _physics_process(delta):
 	var collision = move_and_collide(velocity * delta)
@@ -16,7 +20,9 @@ func _physics_process(delta):
 		if collision.collider.is_in_group("Brick"):
 			collision.collider.queue_free()
 		if collision.collider.is_in_group("floor"):
-			alert("you lose", "game over")
+			alert("you lose", "game over, NOOOOB!!!")
+
+
 func alert(text: String, title: String='Message'):
 	var dialog = AcceptDialog.new()
 	dialog.dialog_text = text
