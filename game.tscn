@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://wall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game.gd" type="Script" id=2]
 [ext_resource path="res://brick.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ground.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/background/layers/sky.png" type="Texture" id=5]
+[ext_resource path="res://brickBonus.tscn" type="PackedScene" id=6]
 
 [node name="Node2D" type="Node"]
 script = ExtResource( 2 )
@@ -41,3 +42,6 @@ position = Vector2( 622, 135 )
 
 [node name="ground" parent="." instance=ExtResource( 4 )]
 z_index = 1
+
+[node name="brick3lifes" parent="." instance=ExtResource( 6 )]
+position = Vector2( 484, 194 )
