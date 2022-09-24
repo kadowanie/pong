@@ -21,16 +21,14 @@ func _process(delta):
 
 	var slide = slideForce * (left - right)
 	if abs(slide) < slideForce * 0.2:
-		
 		 # The velocity, slowed down a bit, and then reassigned.
 		velocity.x = move_toward(velocity.x, 0, stopForce * delta)
-
 	else:
 		velocity.x += slide * delta
 		velocity.x = clamp(velocity.x, -maxSpeed, maxSpeed)
 		var collision = move_and_collide(velocity)
 		if collision:
 			velocity = velocity.bounce(collision.normal)
+			velocity.y = 0
 			#if collision.collider.has_method("hit"):
 				#collision.collider.hit()
-				

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://wall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://ground.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/background/layers/sky.png" type="Texture" id=5]
 [ext_resource path="res://brickBonus.tscn" type="PackedScene" id=6]
+[ext_resource path="res://teleporter.tscn" type="PackedScene" id=7]
 
 [node name="Node2D" type="Node"]
 script = ExtResource( 2 )
@@ -25,19 +26,19 @@ rotation = 1.5708
 position = Vector2( 1003, 75 )
 rotation = 1.5708
 
-[node name="brick" parent="." instance=ExtResource( 3 )]
+[node name="brick" parent="." groups=["Brick"] instance=ExtResource( 3 )]
 position = Vector2( 360, 135 )
 
-[node name="brick2" parent="." instance=ExtResource( 3 )]
+[node name="brick2" parent="." groups=["Brick"] instance=ExtResource( 3 )]
 position = Vector2( 425, 135 )
 
-[node name="brick3" parent="." instance=ExtResource( 3 )]
+[node name="brick3" parent="." groups=["Brick"] instance=ExtResource( 3 )]
 position = Vector2( 491, 135 )
 
-[node name="brick4" parent="." instance=ExtResource( 3 )]
+[node name="brick4" parent="." groups=["Brick"] instance=ExtResource( 3 )]
 position = Vector2( 557, 135 )
 
-[node name="brick5" parent="." instance=ExtResource( 3 )]
+[node name="brick5" parent="." groups=["Brick"] instance=ExtResource( 3 )]
 position = Vector2( 622, 135 )
 
 [node name="ground" parent="." instance=ExtResource( 4 )]
@@ -45,3 +46,64 @@ z_index = 1
 
 [node name="brick3lifes" parent="." instance=ExtResource( 6 )]
 position = Vector2( 484, 194 )
+
+[node name="PauseDialog" type="WindowDialog" parent="."]
+pause_mode = 2
+margin_left = 384.0
+margin_top = 256.0
+margin_right = 640.0
+margin_bottom = 449.0
+
+[node name="Buttons" type="VBoxContainer" parent="PauseDialog"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = -80.5
+margin_right = 64.0
+margin_bottom = 80.5
+alignment = 1
+
+[node name="Continue" type="Button" parent="PauseDialog/Buttons"]
+margin_top = 46.0
+margin_right = 128.0
+margin_bottom = 66.0
+text = "Continue"
+
+[node name="Restart" type="Button" parent="PauseDialog/Buttons"]
+margin_top = 70.0
+margin_right = 128.0
+margin_bottom = 90.0
+text = "Restart"
+
+[node name="Quit" type="Button" parent="PauseDialog/Buttons"]
+margin_top = 94.0
+margin_right = 128.0
+margin_bottom = 114.0
+text = "Quit"
+
+[node name="teleporter1" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1006, 548 )
+
+[node name="teleporter" parent="." instance=ExtResource( 7 )]
+position = Vector2( 4, 548 )
+
+[node name="ScoreInterface" type="Control" parent="."]
+margin_left = 32.0
+margin_top = 33.0
+margin_right = 96.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ScoreLabel" type="Label" parent="ScoreInterface"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0, 1, 0.752941, 1 )
+custom_colors/font_outline_modulate = Color( 1, 0, 0.992157, 1 )
+text = "Score: 0"
+uppercase = true
+
+[connection signal="pressed" from="PauseDialog/Buttons/Continue" to="." method="_on_Continue_pressed"]

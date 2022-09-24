@@ -24,6 +24,10 @@ config/name="Pong"
 run/main_scene="res://mainMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+event_bus="*res://event_bus.gd"
+
 [display]
 
 window/stretch/mode="viewport"

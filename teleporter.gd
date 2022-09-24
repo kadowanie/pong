@@ -8,11 +8,6 @@ var self_pos
 func _ready():
 	self_name = self.get_name()
 	get_self_teleport_index()
-func _on_Area2D_body_entered(body):
-	if index%2==0:
-		body.position=event_bus.teleport_positions[index+1]
-	else:
-		body.position=event_bus.teleport_positions[index-1]
 func get_self_teleport_index():
 	if self_name.length()==10:
 		event_bus.names.insert(0, self_name)
@@ -25,4 +20,10 @@ func get_self_teleport_index():
 		event_bus.names.insert(last_char, self_name)
 		event_bus.teleport_positions.insert(last_char, self_pos)
 		index=last_char as int
+func _on_Area2D_body_entered(body):
+	if index%2==0:
+		body.position=event_bus.teleport_positions[index+1]
+	else:
+		body.position=event_bus.teleport_positions[index-1]
+
 		

@@ -1,6 +1,55 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://mainMenu.gd" type="Script" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends VBoxContainer
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+var names = [] #матрица для хранения имен телепортов
+var teleport_positions = []
+var teleports_count = 0
+
+#сигнал для сбора данных о позиции телепортатора
+signal teleporters_data(name, position)
+
+#куда тпшиться
+var target_pos = Vector2()
+
+
+#сбор базы телепортов
+func teleports_data(name, position):
+	if names.empty == true: #may be if it doesn’t work use- names.size==0
+		names.insert(teleports_count, name)
+		teleport_positions.insert(teleports_count, position)
+		teleports_count += 1
+	else:
+		names.insert(teleports_count, name)
+		teleport_positions.insert(teleports_count, position)
+		teleports_count += 1
+
+func teleporter(name):
+	for i in names:
+		if names[i] == name:
+			if i % 2 == 0:
+				target_pos = teleport_positions[i + 1]
+			else:
+				target_pos = teleport_positions[i - 1]
+"
 
 [node name="mainMenu" type="Control"]
 anchor_left = 0.5
@@ -22,6 +71,7 @@ margin_left = -41.5
 margin_top = -22.0
 margin_right = 41.5
 margin_bottom = 22.0
+script = SubResource( 1 )
 
 [node name="StartButton" type="Button" parent="menuContainer"]
 margin_right = 83.0
